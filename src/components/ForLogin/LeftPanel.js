@@ -2,6 +2,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../../styles/login-style.css';
+import lightImage from '../../assets/images/light.svg'; // 이미지 임포트
+import darkImage from '../../assets/images/dark.svg';   // 이미지 임포트
 
 function LeftPanel({ toggleTheme, theme }) {
   return (
@@ -20,8 +22,8 @@ function LeftPanel({ toggleTheme, theme }) {
             checked={theme === 'dark'}
           />
           <span className="slider">
-            <img src="assets/images/light.svg" alt="Light" className="light-image" />
-            <img src="assets/images/dark.svg" alt="Dark" className="dark-image" />
+            <img src={lightImage} alt="Light" className="light-image" />
+            <img src={darkImage} alt="Dark" className="dark-image" />
           </span>
         </label>
       </div>

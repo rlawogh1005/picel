@@ -3,6 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import '../../styles/login-style.css';
 import { AuthContext } from '../../context/AuthContext';
+import confirmLight from '../../assets/images/confirm_light.svg'; // 이미지 임포트
+import xLight from '../../assets/images/x_light.svg'; // 이미지 임포트
 
 function SignupForm({ toggleAuthMode }) {
   const [password, setPassword] = useState('');
@@ -92,9 +94,9 @@ function SignupForm({ toggleAuthMode }) {
           />
           {password.length > 0 && (
             isMatched ? (
-              <img src="assets/images/confirm_light.svg" alt="Confirm" className="icon confirm-icon" />
+              <img src={confirmLight} alt="Confirm" className="icon confirm-icon" />
             ) : (
-              <img src="assets/images/x_light.svg" alt="X" className="icon x-icon" />
+              <img src={xLight} alt="X" className="icon x-icon" />
             )
           )}
         </div>
