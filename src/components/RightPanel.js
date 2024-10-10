@@ -7,14 +7,13 @@ import SignupForm from './SignupForm';
 function RightPanel() {
   const [isLogin, setIsLogin] = useState(true);
 
-  const showSignup = () => setIsLogin(false);
-  const showLogin = () => setIsLogin(true);
+  const toggleAuthMode = () => setIsLogin((prev) => !prev);
 
   return (
     <div className="right-panel">
-      {isLogin ? <LoginForm showSignup={showSignup} /> : <SignupForm showLogin={showLogin} />}
+      {isLogin ? <LoginForm toggleAuthMode={toggleAuthMode} /> : <SignupForm toggleAuthMode={toggleAuthMode} />}
     </div>
   );
 }
 
-export default RightPanel;
+export default React.memo(RightPanel);
