@@ -1,8 +1,8 @@
-// src/components/SignupForm.js
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import '../styles/login-style.css';
 
-function SignupForm({ showLogin }) {
+function SignupForm({ toggleAuthMode }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isMatched, setIsMatched] = useState(false);
@@ -11,15 +11,19 @@ function SignupForm({ showLogin }) {
     setIsMatched(password === confirmPassword && password.length > 0);
   }, [password, confirmPassword]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Handle signup logic here
+  };
+
   return (
     <div id="signup-section">
       <h2>SIGN UP</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h6>Username</h6>
         <div className="input-container">
-          <input className="username" type="text" name="username" />
+          <input className="username" type="text" name="username" required />
           <button type="button" className="username-check">Check</button>
-          <br />
         </div>
         <h6>Password</h6>
         <div className="input-container">
@@ -29,8 +33,8 @@ function SignupForm({ showLogin }) {
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <br />
         </div>
         <h6>Confirm Password</h6>
         <div className="input-container">
@@ -40,6 +44,7 @@ function SignupForm({ showLogin }) {
             name="confirm-password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
           {password.length > 0 && (
             isMatched ? (
@@ -51,12 +56,16 @@ function SignupForm({ showLogin }) {
         </div>
         <input type="submit" className="btn main-btn" value="Sign Up" />
         <div className="line"></div>
-        <button className="btn sub-btn" onClick={showLogin}>
+        <button type="button" className="btn sub-btn" onClick={toggleAuthMode}>
           Back to Login
         </button>
       </form>
     </div>
   );
 }
+
+SignupForm.propTypes = {
+  toggleAuthMode: PropTypes.func.isRequired,
+};
 
 export default SignupForm;
