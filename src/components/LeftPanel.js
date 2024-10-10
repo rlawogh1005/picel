@@ -1,5 +1,6 @@
 // src/components/LeftPanel.js
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../styles/login-style.css';
 
 function LeftPanel({ toggleTheme, theme }) {
@@ -28,4 +29,9 @@ function LeftPanel({ toggleTheme, theme }) {
   );
 }
 
-export default LeftPanel;
+LeftPanel.propTypes = {
+  toggleTheme: PropTypes.func.isRequired,
+  theme: PropTypes.string.isRequired,
+};
+
+export default React.memo(LeftPanel);
