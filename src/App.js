@@ -1,6 +1,6 @@
 // src/App.js
 import React, { useState, useEffect } from 'react';
-import './styles/App.css';
+import './App.css';
 import LeftPanel from './components/LeftPanel';
 import RightPanel from './components/RightPanel';
 
