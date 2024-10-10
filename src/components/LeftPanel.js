@@ -1,6 +1,6 @@
 // src/components/LeftPanel.js
 import React from 'react';
-import '../styles/LeftPanel.css';
+import '../styles/login-style.css';
 
 function LeftPanel({ toggleTheme, theme }) {
   return (

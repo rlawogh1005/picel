@@ -1,5 +1,6 @@
 // src/components/LoginForm.js
 import React, { useState } from 'react';
+import '../styles/login-style.css';
 
 function LoginForm({ showSignup }) {
   const [passwordVisible, setPasswordVisible] = useState(false);

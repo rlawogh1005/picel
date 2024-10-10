@@ -1,5 +1,6 @@
 // src/components/SignupForm.js
 import React, { useState, useEffect } from 'react';
+import '../styles/login-style.css';
 
 function SignupForm({ showLogin }) {
   const [password, setPassword] = useState('');
