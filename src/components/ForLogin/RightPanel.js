@@ -1,6 +1,6 @@
 // src/components/RightPanel.js
 import React, { useState } from 'react';
-import '../styles/login-style.css';
+import '../../styles/login-style.css';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 

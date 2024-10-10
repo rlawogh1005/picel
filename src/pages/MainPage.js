@@ -1,13 +1,22 @@
 import React from 'react';
-import '../styles/main-style.css';
+import PropTypes from 'prop-types';
+import '../styles/login-style.css';
+import Navigation from '../components/Navigation';
 
-function MainPage() {
+const MainPage = ({ onLogoutClick }) => {
   return (
     <div className="main-page">
-      <h1>Welcome to the Main Page</h1>
-      {/* TODO: Implement main page content here */}
+      <Navigation />
+      <div className="main-content">
+        <h1>메인 콘텐츠</h1>
+        <button onClick={onLogoutClick} className="btn main-btn">로그아웃</button>
+      </div>
     </div>
   );
-}
+};
+
+MainPage.propTypes = {
+  onLogoutClick: PropTypes.func.isRequired,
+};
 
 export default MainPage;
