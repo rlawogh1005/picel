@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState, useEffect } from 'react';
+import './styles/App.css';
+import LeftPanel from './components/LeftPanel';
+import RightPanel from './components/RightPanel';
 
 function App() {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <LeftPanel toggleTheme={toggleTheme} theme={theme} />
+      <RightPanel />
     </div>
   );
 }
