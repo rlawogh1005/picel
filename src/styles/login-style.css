@@ -97,7 +97,7 @@ body {
   padding-right: 10px;
 }
 
-.username, .password, .confirm-password {
+.user_name, .id, .nick_name, .password, .confirm-password, .email {
   flex: 1;
   border: none;
   font-size: 16px;
