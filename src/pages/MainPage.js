@@ -1,3 +1,4 @@
+// src/pages/MainPage.js
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/login-style.css';
