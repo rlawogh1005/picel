@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const ThemeContext = createContext();
 
@@ -9,6 +9,10 @@ export const ThemeProvider = ({ children }) => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
@@ -16,7 +20,3 @@ export const ThemeProvider = ({ children }) => {
   );
 };
 
-// utils/theme.js
-export const toggleTheme = () => {
-  // 라이트 및 다크 테마 간 전환하는 코드
-};

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals'; // 웹 바이탈 지표 측정,성능 모니터링 도구 연동
+import './styles/login-style.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

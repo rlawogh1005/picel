@@ -9,7 +9,7 @@ const AuthPage = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div className="auth-page">
+    <div className="container">
       <LeftPanel toggleTheme={toggleTheme} theme={theme} />
       <RightPanel />
     </div>

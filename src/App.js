@@ -5,6 +5,7 @@ import { AuthProvider, AuthContext } from './context/AuthContext';
 import AuthPage from './pages/AuthPage';
 import MainPage from './pages/MainPage';
 import LogoutPopup from './components/LogoutPopup';
+import './App'
 import './styles/login-style.css';
 
 function App() {
@@ -27,7 +28,7 @@ const AppContent = () => {
   const cancelLogout = () => setShowLogoutPopup(false);
 
   return (
-    <div className={`app-container ${theme}`}>
+    <div className={`app-container`} data-theme={theme}>
       {isAuthenticated ? (
         <>
           <MainPage onLogoutClick={handleLogoutClick} />
