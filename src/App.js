@@ -1,18 +1,20 @@
 // src/App.js
 import React, { useContext, useState } from 'react';
-import { ThemeProvider, ThemeContext } from './context/ThemeContext'; // 테마 Context (이미 설정된 경우)
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider, ThemeContext } from './context/ThemeContext';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import AuthPage from './pages/AuthPage';
 import MainPage from './pages/MainPage';
 import LogoutPopup from './components/LogoutPopup';
-import './App'
 import './styles/login-style.css';
 
 function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <AppContent />
+        <Router>
+          <AppContent />
+        </Router>
       </AuthProvider>
     </ThemeProvider>
   );
@@ -24,19 +26,29 @@ const AppContent = () => {
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
 
   const handleLogoutClick = () => setShowLogoutPopup(true);
-  const confirmLogout = () => { logout(); setShowLogoutPopup(false); };
+  const confirmLogout = () => {
+    logout();
+    setShowLogoutPopup(false);
+  };
   const cancelLogout = () => setShowLogoutPopup(false);
 
   return (
     <div className={`app-container`} data-theme={theme}>
-      {isAuthenticated ? (
-        <>
-          <MainPage onLogoutClick={handleLogoutClick} />
-          {showLogoutPopup && <LogoutPopup onConfirm={confirmLogout} onCancel={cancelLogout} />}
-        </>
-      ) : (
-        <AuthPage />
-      )}
+      <Routes>
+        <Route path="/" element={isAuthenticated ? <Navigate to="/main" /> : <AuthPage />}/>
+        <Route path="/main" element={ isAuthenticated ? (
+              <>
+                <MainPage onLogoutClick={handleLogoutClick} />
+                {showLogoutPopup && (
+                  <LogoutPopup onConfirm={confirmLogout} onCancel={cancelLogout} />
+                )}
+              </>
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+      </Routes>
     </div>
   );
 };
