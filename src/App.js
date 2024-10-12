@@ -5,7 +5,7 @@ import { ThemeProvider, ThemeContext } from './context/ThemeContext';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import AuthPage from './pages/AuthPage';
 import MainPage from './pages/MainPage';
-import LogoutPopup from './components/LogoutPopup';
+import LogoutPopup from './components/Formain/LogoutPopup';
 import './styles/login-style.css';
 
 function App() {

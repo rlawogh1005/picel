@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/login-style.css';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/Formain/Navigation';
 
 const MainPage = ({ onLogoutClick }) => {
   return (
