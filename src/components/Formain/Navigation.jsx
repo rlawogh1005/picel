@@ -2,9 +2,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext.jsx';
 import LogoutPopup from './LogoutPopup';
-import '../styles/login-style.css';
+import '../../styles/login-style.css';
+
 
 const Navigation = ({ onNoticeClick }) => {
   const { user, logout } = useContext(AuthContext);
@@ -32,13 +33,13 @@ const Navigation = ({ onNoticeClick }) => {
       <ul className="menu">
         <li>
           <Link to="/main">
-            <img src="assets/images/calendar.svg" alt="Calendar" className="icon calendar-icon" />
+            <img src="src/assets/images/calendar_dark.svg" alt="Calendar" className="icon calendar-icon" />
             <span className="today">{formattedDate}</span>
           </Link>
         </li>
         <li>
           <Link to="/main">
-            <img src="assets/images/clock.svg" alt="Clock" className="icon clock-icon" />
+            <img src="assets/images/clock_dark.svg" alt="Clock" className="icon clock-icon" />
             <span className="time-now">{formattedTime}</span>
           </Link>
         </li>
