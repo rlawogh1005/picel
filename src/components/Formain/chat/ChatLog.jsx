@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../../../styles/login-style.css'; // ChatLog 스타일
-import { deleteMessage } from '../../services/chatService';
+import { deleteMessage } from '../../../services/ChatService';
 
 const ChatLog = ({ message, onDelete }) => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
