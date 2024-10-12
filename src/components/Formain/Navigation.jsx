@@ -1,67 +1,69 @@
 // src/components/Navigation.jsx
-import React, { useContext, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { AuthContext } from '../../context/AuthContext.jsx';
+import React, { useState, useContext } from 'react';
+import NoticePopup from './NoticePopup';
 import LogoutPopup from './LogoutPopup';
-import '../../styles/login-style.css';
+import { AuthContext } from '../../context/AuthContext';
+import '../../styles/login-style.css'; // 네비게이션 관련 스타일
 
+const Navigation = ({ onLogoutClick }) => {
+  const { user } = useContext(AuthContext);
+  const [isNoticeOpen, setIsNoticeOpen] = useState(false);
 
-const Navigation = ({ onNoticeClick }) => {
-  const { user, logout } = useContext(AuthContext);
-  const [showLogoutPopup, setShowLogoutPopup] = useState(false);
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDate(new Date());
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const handleProfileClick = () => setShowLogoutPopup(true);
-  const confirmLogout = () => { logout(); setShowLogoutPopup(false); };
-  const cancelLogout = () => setShowLogoutPopup(false);
-
-  const formattedDate = currentDate.toLocaleDateString();
-  const formattedTime = currentTime.toLocaleTimeString();
+  const toggleNotice = () => setIsNoticeOpen(!isNoticeOpen);
 
   return (
     <nav className="gnb">
       <ul className="menu">
         <li>
-          <Link to="/main">
-            <img src="src/assets/images/calendar_dark.svg" alt="Calendar" className="icon calendar-icon" />
-            <span className="today">{formattedDate}</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/main">
-            <img src="assets/images/clock_dark.svg" alt="Clock" className="icon clock-icon" />
-            <span className="time-now">{formattedTime}</span>
-          </Link>
-        </li>
-      </ul>
-      <ul className="profile-menu">
-        <li className="profile" onClick={handleProfileClick}>
-          <a href="#profile">
-            <img src="assets/images/sample.jpg" alt="Profile-img" />
-            <div className="profile-info">
-              <div className="user-id">{user?.username || 'UserID1234'}</div>
-              <div className="user-email">{user?.email || 'example@gmail.com'}</div>
-            </div>
+          <a href="#">
+            <img alt="Calendar" className="icon calendar-icon" src="/path/to/calendar-icon.png" />
+            <span className="today">08 / 15</span>
           </a>
         </li>
+        <li>
+          <a href="#">
+            <img alt="Clock" className="icon clock-icon" src="/path/to/clock-icon.png" />
+            <span className="time-now">2:30 PM</span>
+          </a>
+        </li>
+        <li className="gnb-line"></li>
+        <li className="click-menu">
+          <a href="#friend">
+            <img alt="Friend" className="icon friend-icon" src="/path/to/friend-icon.png" />
+            Friend
+          </a>
+        </li>
+        <li className="click-menu">
+          <a href="#chat">
+            <img alt="Chat" className="icon chat-icon" src="/path/to/chat-icon.png" />
+            Chat
+          </a>
+        </li>
+        <li className="click-menu">
+          <a href="#setting">
+            <img alt="Setting" className="icon setting-icon" src="/path/to/setting-icon.png" />
+            Setting
+          </a>
+        </li>
+        <li className="click-menu notice-menu" onClick={toggleNotice}>
+          <a href="#">
+            <img alt="Notice" className="icon notice-icon" src="/path/to/notice-icon.png" />
+            Notice
+          </a>
+          {isNoticeOpen && <NoticePopup />}
+        </li>
       </ul>
-      {showLogoutPopup && <LogoutPopup onConfirm={confirmLogout} onCancel={cancelLogout} />}
+      <li className="profile" onClick={onLogoutClick}>
+        <a href="#">
+          <img src="/image/sample.jpg" alt="Profile-img" />
+          <div className="profile-info">
+            <div className="user-id">{user?.username || 'UserID1234'}</div>
+            <div className="user-email">{user?.email || 'example@gmail.com'}</div>
+          </div>
+        </a>
+      </li>
     </nav>
   );
-};
-
-Navigation.propTypes = {
-  onNoticeClick: PropTypes.func,
 };
 
 export default Navigation;
